@@ -1,0 +1,75 @@
+# Molt example configuration.
+#
+# Copy to $XDG_CONFIG_HOME/molt/config.toml (usually ~/.config/molt/config.toml)
+# or generate it with `molt config init`. Every field is optional; anything you
+# omit falls back to a sensible default. Nothing is hardcoded in the binary that
+# you cannot override here.
+
+# Backend preference: "auto" (uv when available, otherwise venv), "uv", "venv".
+backend = "auto"
+
+[python]
+# Preferred interpreter version when creating environments (e.g. "3.12").
+# preferred_version = "3.12"
+# Directory name used for in-project environments.
+default_venv_name = ".venv"
+# Optional central directory for environments created outside a project.
+# central_env_dir = "/home/you/.local/share/molt/envs"
+# Extra directories to search for interpreters (in addition to PATH).
+search_paths = []
+
+[ui]
+# Built-in themes: moss, amber, ocean, mono, high-contrast.
+theme = "moss"
+# Use Unicode glyphs (false falls back to ASCII).
+unicode = true
+# Capture mouse events in the TUI.
+mouse = false
+# UI refresh / input poll interval in milliseconds.
+tick_rate_ms = 120
+# chrono-style timestamp format.
+date_format = "%Y-%m-%d %H:%M"
+
+# Override individual colour tokens on top of the chosen theme.
+# Tokens: accent, accent_alt, success, warning, danger, info, fg, fg_dim,
+# muted, border, border_focus, selection_bg, selection_fg, panel_bg.
+[ui.theme_overrides]
+# accent = "#9ED96B"
+# danger = "#E06C75"
+
+[behavior]
+# Ask before destructive actions (remove / rebuild).
+confirm_destructive = true
+# Record a local run history.
+save_history = true
+# Shell for `molt shell` and shell tasks (defaults to $SHELL).
+# shell = "/bin/bash"
+# Editor for longer values (defaults to $EDITOR).
+# editor = "nvim"
+# Default run presentation: "captured" (in-app console) or "terminal".
+default_run_mode = "captured"
+
+# Key bindings. Values accept single characters, named keys (enter, esc, tab,
+# backtab, up, down, left, right, home, end, pageup, pagedown, space,
+# backspace, f1..f12) and ctrl+/alt+/shift+ prefixes.
+[keys]
+quit = "q"
+help = "?"
+palette = "a"
+up = "up"
+down = "down"
+left = "left"
+right = "right"
+select = "enter"
+back = "esc"
+run = "r"
+install = "i"
+search = "/"
+new = "n"
+refresh = "f5"
+next_tab = "tab"
+prev_tab = "backtab"
+delete = "d"
+shell = "s"
+page_up = "pageup"
+page_down = "pagedown"
