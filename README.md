@@ -1,129 +1,131 @@
-# Molt
+<div align="center">
 
-A local-first **terminal UI and CLI for managing Python virtual environments**
-and running code inside them. Molt is built in Rust, targets Linux, and is
-designed to be simple to drive, keyboard-first, and fully configurable.
+# 🦎 Molt
 
-> Status: first complete implementation. Requires a Rust toolchain to build.
+**A local-first terminal UI and CLI for managing Python virtual environments and running code.**
 
-## Highlights
+[![Rust](https://img.shields.io/badge/Rust-1.70%2B-orange.svg?style=for-the-badge&logo=rust)](https://www.rust-lang.org/)
+[![Platform](https://img.shields.io/badge/Platform-Linux-blue.svg?style=for-the-badge&logo=linux)](https://github.com/tomas-trantina/molt)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
 
-- **Two backends, one workflow.** Uses [`uv`](https://github.com/astral-sh/uv)
-  when it is available (fast) and transparently falls back to the standard
-  library `venv` + `pip`. Choose per project or globally.
-- **Install `requirements.txt` in one keypress.** Press `i` in the TUI (or run
-  `molt install`) to install a requirements file into the selected environment.
-- **Run scripts and saved tasks** with the environment activated, streaming the
-  output into an in-app console you can scroll and stop.
-- **Manage packages** - list, add, and remove packages without leaving the UI.
-- **Command palette** (`a`) for every action, and a discoverable help overlay
-  (`?`).
-- **Everything is configurable** - themes, colours, key bindings, backend,
-  Python version, confirmations, shells - via `~/.config/molt/config.toml`.
-- **Local-first.** Project registry and settings live in standard XDG
-  directories; portable per-project settings live in `.molt.toml`.
+<br />
 
-## Installation
+<img width="100%" alt="Molt Terminal UI Preview" src="https://github.com/user-attachments/assets/ffe7fb95-a357-4601-9825-3f9e4d33406a" />
 
-### One-line Installation (Linux / macOS)
+</div>
 
-Install directly via `curl`:
+---
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/tomas-trantina/molt/main/install.sh | bash
-```
+> 📌 **Status:** First complete implementation. Requires a Rust toolchain to build from source.
 
-### Local Installation
+---
 
-Clone the repository and run the installer script:
+## ✨ Features
 
-```bash
-git clone https://github.com/tomas-trantina/molt.git
-cd molt
-./install.sh
-```
+- ⚡ **Dual Backends, Unified Workflow**: Transparently uses [`uv`](https://github.com/astral-sh/uv) when available for ultra-fast operations, automatically falling back to standard `venv` + `pip`. Choose per project or globally.
+- 📦 **One-Keypress Installations**: Press `i` in the TUI (or run `molt install`) to instantly install dependencies from `requirements.txt`.
+- 🚀 **Script & Task Runner**: Execute scripts and saved tasks with active environment variables while streaming output into an interactive, scrollable console.
+- 🛠️ **Package Management**: Inspect, add, and remove Python packages directly without leaving the UI.
+- 🎯 **Command Palette & Help**: Instant action access via Command Palette (`a`) and a discoverable help overlay (`?`).
+- ⚙️ **Fully Configurable**: Customize themes, colors, keybindings, backends, Python versions, and shells via `~/.config/molt/config.toml`.
+- 📂 **Local-First & Portable**: Project registry and settings reside in standard XDG directories, while portable project settings live in `.molt.toml`.
 
-### Manual Build
+---
 
-If you have Rust installed and prefer building with `cargo`:
-
-```bash
-cargo build --release
-# binary: target/release/molt
-```
-
-Run the tests (pure logic, no network or Python required):
-
-```bash
-cargo test
-```
-
-## Uninstall
-
-To remove `molt`:
-
-```bash
-./uninstall.sh
-# or via curl:
-# curl -fsSL https://raw.githubusercontent.com/tomas-trantina/molt/main/uninstall.sh | bash
-```
-
-To remove `molt` along with all user configuration and data files:
-
-```bash
-./uninstall.sh --purge
-```
-
-## Quick start
+## ⚡ Quick Start
 
 ```bash
 # Register an existing project (or create a new one)
 molt import ./my-project
 molt create my-app --python 3.12
 
-# Launch the interactive UI
+# Launch the interactive Terminal UI
 molt
 
-# ...or use the CLI directly
-molt env create                 # create the default environment
-molt install                    # install requirements.txt into it
-molt add requests rich          # install packages
-molt run main.py                # run a script in the environment
-molt run test                   # run a saved task named "test"
-molt shell                      # drop into an activated subshell
-molt doctor                     # check the toolchain
+# Or use the CLI directly
+molt env create                 # Create the default environment
+molt install                    # Install requirements.txt into environment
+molt add requests rich          # Install packages
+molt run main.py                # Run a script in the environment
+molt run test                   # Run a saved task named "test"
+molt shell                      # Drop into an activated subshell
+molt doctor                     # Check toolchain health
 ```
 
-Global flags: `--project <name|path>`, `--env <name>`, `--backend <auto|uv|venv>`.
+> 💡 **Global Flags:** `--project <name|path>`, `--env <name>`, `--backend <auto|uv|venv>`
 
-## Keyboard (defaults)
+---
+
+## ⌨️ Keybindings
+
+### 🖥️ Main Navigation
 
 | Key | Action |
-|-----|--------|
-| arrows | navigate / focus |
-| `enter` | select / focus / run |
-| `a` | command palette |
-| `i` | install requirements |
-| `r` | run selected task or script |
-| `tab` | switch detail tab |
-| `s` | open activated shell |
-| `n` | import a project |
-| `d` | delete selected env / package |
-| `f5` | reload project |
-| `?` | help |
-| `q` | quit |
+| :--- | :--- |
+| `Arrows` | Navigate / focus panels |
+| `Enter` | Select / focus / run |
+| `a` | Command palette |
+| `i` | Install requirements |
+| `r` | Run selected task or script |
+| `Tab` | Switch detail tab |
+| `s` | Open activated shell |
+| `n` | Import a project |
+| `d` | Delete selected environment / package |
+| `F5` | Reload project |
+| `?` | Help overlay |
+| `q` | Quit |
 
-In the output console: arrows / page keys scroll, `enter` re-enables
-auto-scroll, `x` stops the running process.
+### 📜 Output Console
 
-## Project manifest (`.molt.toml`)
+| Key | Action |
+| :--- | :--- |
+| `Arrows` / `PgUp` / `PgDn` | Scroll output |
+| `Enter` | Re-enable auto-scroll |
+| `x` | Stop running process |
 
-Portable, shareable per-project settings:
+---
+
+## 📦 Installation
+
+### ⚡ One-Line Quick Install (Linux / macOS)
+
+```bash
+curl -fsSL [https://raw.githubusercontent.com/tomas-trantina/molt/main/install.sh](https://raw.githubusercontent.com/tomas-trantina/molt/main/install.sh) | bash
+```
+
+### 🛠️ Local Installation
+
+Clone the repository and run the installer script:
+
+```bash
+git clone [https://github.com/tomas-trantina/molt.git](https://github.com/tomas-trantina/molt.git)
+cd molt
+./install.sh
+```
+
+### 🔧 Manual Build from Source
+
+Requires a working Rust toolchain:
+
+```bash
+# Build release binary
+cargo build --release
+# Compiled binary location: target/release/molt
+
+# Run tests (pure logic, no network or Python required)
+cargo test
+```
+
+---
+
+## 📄 Project Manifest (`.molt.toml`)
+
+Add portable, shareable per-project settings to your repository:
 
 ```toml
 name = "my-app"
 python = "3.12"
-backend = "uv"          # optional override
+backend = "uv"          # optional: "auto" | "uv" | "venv"
 
 [[environments]]
 name = "default"
@@ -143,34 +145,63 @@ command = "main.py"
 env_file = ".env"
 ```
 
-## Configuration
+---
 
-See [`config.example.toml`](./config.example.toml) for every setting, or run
-`molt config init` to write a default file and `molt config path` to locate it.
+## ⚙️ Configuration
 
-## Architecture
+Generate a default configuration or inspect paths:
 
-Modular Rust crate, cleanly separating concerns so new backends, themes,
-languages, or screens can be added without rewriting the core:
-
+```bash
+molt config init  # Generates default ~/.config/molt/config.toml
+molt config path  # Displays path to current active configuration
 ```
+
+See [`config.example.toml`](./config.example.toml) for full details on customizing themes, keys, and backends.
+
+---
+
+## 🏗️ Architecture
+
+Molt is built as a modular Rust crate, cleanly separating pure domain logic from system execution and rendering:
+
+```text
 src/
-  domain.rs      data model (projects, envs, tasks, packages) - no I/O
-  config.rs      layered user configuration
-  theme.rs       colour tokens + built-in themes (fully overridable)
-  keymap.rs      configurable key bindings
-  registry.rs    machine-local project registry
-  pyfinder.rs    Python interpreter discovery
-  backend.rs     Backend trait + uv and venv implementations
-  runner.rs      process execution (blocking, captured, streamed)
-  service.rs     high-level operations shared by CLI and TUI
-  cli.rs         scriptable command-line interface
-  tui.rs         interactive terminal UI (ratatui)
-  lib.rs/main.rs library + thin binary
+├── domain.rs      # Data model (projects, envs, tasks, packages) - pure logic, no I/O
+├── config.rs      # Layered user configuration
+├── theme.rs       # Color tokens + built-in themes (fully overridable)
+├── keymap.rs      # Configurable key bindings
+├── registry.rs    # Machine-local project registry
+├── pyfinder.rs    # Python interpreter discovery
+├── backend.rs     # Backend trait + uv and venv implementations
+├── runner.rs      # Process execution (blocking, captured, streamed)
+├── service.rs     # High-level operations shared by CLI and TUI
+├── cli.rs         # Scriptable command-line interface
+├── tui.rs         # Interactive terminal UI (powered by Ratatui)
+└── lib.rs/main.rs # Core library & binary entry point
 tests/
-  logic.rs       pure-logic integration tests
+└── logic.rs       # Pure-logic integration tests
 ```
 
-## License
+---
 
-MIT - see [LICENSE](./LICENSE).
+## 🗑️ Uninstallation
+
+To remove Molt:
+
+```bash
+./uninstall.sh
+# Or via curl:
+# curl -fsSL [https://raw.githubusercontent.com/tomas-trantina/molt/main/uninstall.sh](https://raw.githubusercontent.com/tomas-trantina/molt/main/uninstall.sh) | bash
+```
+
+To also remove all user configuration and data files, pass the `--purge` flag:
+
+```bash
+./uninstall.sh --purge
+```
+
+---
+
+## 📜 License
+
+Distributed under the **MIT License**. See [`LICENSE`](./LICENSE) for more information.
