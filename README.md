@@ -23,7 +23,29 @@ designed to be simple to drive, keyboard-first, and fully configurable.
 - **Local-first.** Project registry and settings live in standard XDG
   directories; portable per-project settings live in `.molt.toml`.
 
-## Build
+## Installation
+
+### One-line Installation (Linux / macOS)
+
+Install directly via `curl`:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/tomas-trantina/molt/main/install.sh | bash
+```
+
+### Local Installation
+
+Clone the repository and run the installer script:
+
+```bash
+git clone https://github.com/tomas-trantina/molt.git
+cd molt
+./install.sh
+```
+
+### Manual Build
+
+If you have Rust installed and prefer building with `cargo`:
 
 ```bash
 cargo build --release
@@ -34,6 +56,22 @@ Run the tests (pure logic, no network or Python required):
 
 ```bash
 cargo test
+```
+
+## Uninstall
+
+To remove `molt`:
+
+```bash
+./uninstall.sh
+# or via curl:
+# curl -fsSL https://raw.githubusercontent.com/tomas-trantina/molt/main/uninstall.sh | bash
+```
+
+To remove `molt` along with all user configuration and data files:
+
+```bash
+./uninstall.sh --purge
 ```
 
 ## Quick start
